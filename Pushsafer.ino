@@ -1,5 +1,5 @@
 /*
-   Pushsafer.com sketch by Appzer.de Kevin Siml 2016-08-08
+   Pushsafer.com sketch by Appzer.de Kevin Siml 2016-10-18
    Send pushsafer.com messages from the arduino
 */
 
@@ -28,17 +28,17 @@ void setup()
 
 void loop()
 {
-  pushsafer("It works!!!","Test",1,1,1,"a");  
+  pushsafer("It works!!!","Test",1,1,1,"a","http://www.pushsafer.com","Open Pushsafer","60");  
   delay(60000); 
 }
 
-byte pushsafer(char *pushsafermessage, char *pushsafertitle, int sound, int vibration, int icon, char *psdevice)
+byte pushsafer(char *pushsafermessage, char *pushsafertitle, int sound, int vibration, int icon, char *psdevice, char url, char urltitle, int time2live)
 {
   String title = pushsafertitle;
   String message = pushsafermessage;
   String device = psdevice;
 
-  length = 41 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + device.length() + privatekey.length();
+  length = 30 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + device.length() + url.length() + urltitle.length() + time2live.length() + privatekey.length();
 
   if(client.connect("pushsafer.com",80))
   {
@@ -61,9 +61,13 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, int sound, int vibr
     client.print("&i=");
     client.print(icon);
     client.print("&d=");
-    client.print(device);	
-    client.print("&retry=60");
-    client.print("&expire=3600");
+    client.print(device);
+    client.print("&u=");
+    client.print(url);
+    client.print("&ut=");
+    client.print(urltitle);
+    client.print("&l=");
+    client.print(time2live);
     while(client.connected())  
     {
       while(client.available())
