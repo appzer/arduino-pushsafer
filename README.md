@@ -28,5 +28,5 @@ dtostrf(TemperatureSensor, 4, 1, temp_str);
 
 sprintf(Text,"The current temperature is now %s°",temp_str);
 
-pushsafer(Text,Title,12,3,62,"a");
+pushsafer(Text,Title,12,3,62,"a","https://www.pushsafer.com","Open Pushsafer","60");
 </pre>
