@@ -1,5 +1,6 @@
 /*
-   Pushsafer.com sketch by Appzer.de Kevin Siml 2016-10-18
+   Pushsafer.ino
+   Pushsafer.com sketch by Appzer.de Kevin Siml 2018-07-04
    Send pushsafer.com messages from the arduino
 */
 
@@ -9,7 +10,7 @@
 byte mac[] = {0xDE,0xAC,0xBF,0xEF,0xFE,0xAA};
 
 // pushsafer settings
-char privatekey[] = "your20characterPrivateKey";
+String privatekey = "your20characterPrivateKey";
 
 int length;
 
@@ -28,17 +29,20 @@ void setup()
 
 void loop()
 {
-  pushsafer("It works!!!","Test",1,1,1,"a","http://www.pushsafer.com","Open Pushsafer","60");  
+  pushsafer("It works!!!","Test","1","1","1","a");  
   delay(60000); 
 }
 
-byte pushsafer(char *pushsafermessage, char *pushsafertitle, int sound, int vibration, int icon, char *psdevice, char url, char urltitle, int time2live)
+byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char *psvibration, char *psicon, char *psdevice)
 {
   String title = pushsafertitle;
   String message = pushsafermessage;
   String device = psdevice;
+  String sound = pssound;
+  String vibration = psvibration;
+  String icon = psicon;
 
-  length = 30 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + device.length() + url.length() + urltitle.length() + time2live.length() + privatekey.length();
+  length = 20 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + device.length() + privatekey.length();
 
   if(client.connect("pushsafer.com",80))
   {
@@ -61,13 +65,7 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, int sound, int vibr
     client.print("&i=");
     client.print(icon);
     client.print("&d=");
-    client.print(device);
-    client.print("&u=");
-    client.print(url);
-    client.print("&ut=");
-    client.print(urltitle);
-    client.print("&l=");
-    client.print(time2live);
+    client.print(device);	
     while(client.connected())  
     {
       while(client.available())
