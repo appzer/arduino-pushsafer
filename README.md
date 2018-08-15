@@ -28,6 +28,8 @@ dtostrf(TemperatureSensor, 4, 1, temp_str);
 
 sprintf(Text,"The current temperature is now %s°",temp_str);
 
-// pushsafer(Message,Title,Sound,Vibration,Icon,Device,URL,URLTitle,Time2Live);
-pushsafer(Text,Title,12,3,62,"a","https://www.pushsafer.com","Open Pushsafer","60");
+//  pushsafer("Message","Title","Sound","Vibration","Icon","IconColor","URL","URLTitle","Time2Live","Priority","Retry","Expire","Answer","Device");  
+
+pushsafer(Text,Title,"12","3","62","#FF0000","https://www.pushsafer.com","Open Pushsafer","0","2","60","6000","1","a");  
+
 </pre>
