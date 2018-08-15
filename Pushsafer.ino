@@ -29,11 +29,11 @@ void setup()
 
 void loop()
 {
-  pushsafer("It works!!!","Test","1","1","1","a");  
+  pushsafer("It works!!!","Test","1","1","1","#FF0000","https://www.pushsafer.com","Open Pushsafer","0","2","60","6000","1","a");  
   delay(60000); 
 }
 
-byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char *psvibration, char *psicon, char *psdevice)
+byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char *psvibration, char *psicon, char *pscolor, char *psurl, char *psurltitle, char *pstime2live, char *pspriority, char *psretry, char *psexpire, char *psanswer, char *psdevice)
 {
   String title = pushsafertitle;
   String message = pushsafermessage;
@@ -41,8 +41,16 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char
   String sound = pssound;
   String vibration = psvibration;
   String icon = psicon;
+  String color = pscolor;
+  String url = psurl;
+  String urltitle = psurltitle;
+  String time2live = pstime2live;
+  String priority = pspriority;
+  String retry = psretry;
+  String expire = psexpire;
+  String answer = psanswer;
 
-  length = 20 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + device.length() + privatekey.length();
+  length = 45 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + color.length() + url.length() + urltitle.length() + time2live.length() + device.length() + privatekey.length();
 
   if(client.connect("pushsafer.com",80))
   {
@@ -64,6 +72,22 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char
     client.print(vibration);	
     client.print("&i=");
     client.print(icon);
+    client.print("&c=");
+    client.print(color);
+    client.print("&u=");
+    client.print(url);
+    client.print("&ut=");
+    client.print(urltitle);
+    client.print("&l=");
+    client.print(time2live);
+    client.print("&pr=");
+    client.print(priority);
+    client.print("&re=");
+    client.print(retry);
+    client.print("&ex=");
+    client.print(expire);
+    client.print("&a=");
+    client.print(answer);
     client.print("&d=");
     client.print(device);	
     while(client.connected())  
