@@ -33,7 +33,7 @@ void loop()
   delay(60000); 
 }
 
-byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char *psvibration, char *psicon, char *pscolor, char *psurl, char *psurltitle, char *pstime2live, char *pspriority, char *psretry, char *psexpire, char *psanswer, char *psdevice)
+byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char *psvibration, char *psicon, char *pscolor, char *psurl, char *psurltitle, char *pstime2live, char *pspriority, char *psretry, char *psexpire, char *psconfirm, char *psanswer, char *psansweroptions, char *psanswerforce, char *psdevice)
 {
   String title = pushsafertitle;
   String message = pushsafermessage;
@@ -48,9 +48,12 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char
   String priority = pspriority;
   String retry = psretry;
   String expire = psexpire;
+  String confirm = psconfirm;
   String answer = psanswer;
+  String answeroptions = psansweroptions;
+  String answerforce = psanswerforce;
 
-  length = 45 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + color.length() + url.length() + urltitle.length() + time2live.length() + device.length() + privatekey.length();
+  length = 51 + message.length() + title.length() + sound.length() + vibration.length() + icon.length() + color.length() + url.length() + urltitle.length() + time2live.length() + retry.length() + expire.length() + confirm.length() + answer.length() + answeroptions.length() + answerforce.length() + device.length() + privatekey.length();
 
   if(client.connect("pushsafer.com",80))
   {
@@ -86,8 +89,14 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char
     client.print(retry);
     client.print("&ex=");
     client.print(expire);
+    client.print("&cr=");
+    client.print(confirm);     
     client.print("&a=");
     client.print(answer);
+	client.print("&ao=");
+    client.print(answeroptions);
+	client.print("&af=");
+    client.print(answerforce);
     client.print("&d=");
     client.print(device);	
     while(client.connected())  
