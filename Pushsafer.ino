@@ -93,12 +93,13 @@ byte pushsafer(char *pushsafermessage, char *pushsafertitle, char *pssound, char
     client.print(confirm);     
     client.print("&a=");
     client.print(answer);
-	client.print("&ao=");
+    client.print("&ao=");
     client.print(answeroptions);
-	client.print("&af=");
+    client.print("&af=");
     client.print(answerforce);
     client.print("&d=");
-    client.print(device);	
+    client.print(device);
+
     while(client.connected())  
     {
       while(client.available())
