@@ -29,7 +29,7 @@ void setup()
 
 void loop()
 {
-  pushsafer("It works!!!","Test","1","1","1","#FF0000","https://www.pushsafer.com","Open Pushsafer","0","2","60","6000","1","a");  
+  pushsafer("It works!!!","Test","12","3","10","#FF0000","https://www.pushsafer.com","Open Pushsafer","0","2","","","","1","Yes|No|Maybe","","a");  
   delay(60000); 
 }
 
